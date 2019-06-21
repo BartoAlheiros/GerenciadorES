@@ -5,7 +5,9 @@ import java.util.Arrays;
 
 // Disk Arm Scheduler Simulator with Algorithms
 public class DiskArmSchedSimulator {
+	
 	ArrayList<Integer> distancias = new ArrayList<>();
+	
 	public void sstf(ArrayList<Integer> positions, int posInit) throws InterruptedException {
 		
 		ArrayList<Bloco> blocos = new ArrayList<>();
@@ -19,7 +21,7 @@ public class DiskArmSchedSimulator {
 			blocos.add(b);
 		}
 		
-		// testando ordena 
+		// ordena a lista de distancias 
 		distancias.sort(null);
 		
 		System.out.println(Arrays.toString(distancias.toArray()));
@@ -31,12 +33,13 @@ public class DiskArmSchedSimulator {
 			System.out.println(Arrays.toString(distancias.toArray()));
 		}
 		
-	
+		System.out.println("Fim da leitura.");
 		
 		
 	}
 	
 	public void visita(ArrayList<Bloco> blocos, int menor) throws InterruptedException {
+		
 		for (int i = 0; i < blocos.size(); i++) {
 			//System.out.println("posicao " + blocos.get(i).getNumero() + " distancia da origem " + blocos.get(i).distOrig());
 			if(blocos.get(i).distOrig() == menor) {
@@ -52,5 +55,27 @@ public class DiskArmSchedSimulator {
 	
 	}
 	
+	public void elevadorLook(ArrayList<Integer> positions, int posInit) {
+		
+		ArrayList<Integer> anteriores = new ArrayList<Integer>();
+		ArrayList<Integer> posteriores = new ArrayList<Integer>();
+		
+		// divide as posicões a serem visitadas em anteriores e posteriores ao bloco inicial
+		for (int i = 0; i < positions.size(); i++) {
+			if (positions.get(i).intValue() < posInit) {
+				anteriores.add(positions.get(i));
+			} else if(positions.get(i).intValue() > posInit) {
+				posteriores.add(positions.get(i));
+			}
+		}
+		
+//		System.out.println("ANTERIORES " + Arrays.toString(anteriores.toArray()));
+//		System.out.println("POSTERIORES " + Arrays.toString(posteriores.toArray()));
+		
+		
+	}
 	
+	public void visitaLook() {
+		
+	}
 }
